@@ -1,0 +1,7 @@
+progressbar2==4.0.0
+python-utils==3.3.3
+requests[security]
+dataclasses; python_version < '3.7'
+pywin32!=226; platform_system == "Windows"
+ipython
+jupyterlab

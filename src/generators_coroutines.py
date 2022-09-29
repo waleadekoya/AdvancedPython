@@ -1,7 +1,9 @@
 import itertools
+import json
 from typing import Union, Iterable, Generator
 
 import json_stream
+from json_stream.dump import default
 
 
 def count(
@@ -148,11 +150,12 @@ def chunker(iterable, chunk_size):
 
 
 with open("sample.json") as f:
+    # https://pypi.org/project/json-stream/
     data = json_stream.load(f)
     # print(data["results"])
     chunks = chunker(data["results"].persistent(), 2)
     for result in chunks:
-        data_set = [dict(value) for value in result]
+        data_set = [json.dumps(value, default=default) for value in result]
         print(data_set)
         # for i, value in enumerate(result):
         #     print(i, dict(value))
@@ -161,3 +164,13 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
+    """
+echo "# AdvancedPython" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/waleadekoya/AdvancedPython.git
+git push -u origin main
+    """
